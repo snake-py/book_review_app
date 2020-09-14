@@ -1,0 +1,20 @@
+{
+  "name": "book_review_app",
+  "version": "1.0.0",
+  "description": "Book Review App created by laert-iskurti and snake_py",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snake-py/book_review_app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/snake-py/book_review_app/issues"
+  },
+  "homepage": "https://github.com/snake-py/book_review_app#readme"
+}
