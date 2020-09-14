@@ -1,0 +1,1 @@
+This book review app is a MERN stack app programmed by laert-iskurti and snake_py
