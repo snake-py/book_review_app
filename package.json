@@ -1,7 +1,7 @@
 {
   "name": "book_review_app",
   "version": "1.0.0",
-  "description": "Book Review App created by laert-iskurti and snake_py",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
