@@ -10,7 +10,7 @@ npm install
 ```
 ## Start Express
 
-To start express run:
+To start express run within the backend folder:
 
 ```bash
 npm start
