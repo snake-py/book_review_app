@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const {example} = require('../controllers/exampleController');
+const {register} = require('../controllers/UserController');
 
-router.post('/example', async (req, res) => {
-    const mutedData = await example(req.body.data)
-    res.send(mutedData)
+router.post('/user/register', async (req, res) => {
+    const mutedData = await register(req.body)
+    res.send(req.body)
 })
 
 module.exports = router;
