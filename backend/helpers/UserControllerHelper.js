@@ -1,6 +1,7 @@
+const User = require('../models/User');
 const Joi = require('@hapi/joi');
 
-const registerValidation = (user) => {
+const registerInputValidation = (user) => {
   const schema = Joi.object({
     username: Joi.string().min(2).required(),
     email: Joi.string().email(),
@@ -17,5 +18,21 @@ const loginValidation = (user) => {
   return schema.validate(user);
 };
 
-module.exports.registerValidation = registerValidation;
+const userExistCheck = async (username, email) => {
+  const usernameExist = await User.findOne({ username: username });
+  const emailExist = await User.findOne({ email: email });
+
+  if (usernameExist && emailExist) {
+    return { sucsess: true, msg: 'You are already registered ' };
+  } else if (usernameExist) {
+    return { sucsess: true, msg: 'Username is already taken' };
+  } else if (emailExist) {
+    return { sucsess: true, msg: 'Email is already registered' };
+  } else {
+    return { sucsess: false, msg: '' };
+  }
+};
+
+module.exports.registerInputValidation = registerInputValidation;
 module.exports.loginValidation = loginValidation;
+module.exports.userExistCheck = userExistCheck;
