@@ -1,7 +1,7 @@
-const { registerInputValidation, userExistCheck } = require('../helpers/UserControllerHelper');
+const { registerInputValidation, userExistCheck, loginInputValidation, findUser, issueToken } = require('../helpers/UserControllerHelper');
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose')
 
 // Write controller
 class UserController {
@@ -28,9 +28,16 @@ class UserController {
 
   async login(userToLogin) {
     // identifier can be username or email
-    const { identifier, password } = userToLogin;
+    const validatedInput = loginInputValidation(userToLogin);
+    const { error } = validatedInput.validatedInput;
+    if (error) return error.details[0].message;
 
+    const user = await findUser(userToLogin);
+    if (!user) return { success: false, message: 'We dont know this user! Do you want to register?' };
+    // return user.password;
 
+    const token = await issueToken(user, userToLogin);
+    return token;
   }
 }
 
