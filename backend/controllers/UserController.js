@@ -34,10 +34,30 @@ class UserController {
 
     const user = await findUser(userToLogin);
     if (!user) return { success: false, message: 'We dont know this user! Do you want to register?' };
-    // return user.password;
 
     const token = await issueToken(user, userToLogin);
     return token;
+  }
+
+  async changeBanStatus(userToBan) {
+    try {
+      const user = await User.findById(userToBan._id);
+      user.isBanned = user.isBanned ? false : true;
+      await user.save();
+      return { status: 200, success: true, message: `${user.username} banned status was changed to ${user.isBanned}` };
+    } catch (error) {
+      return { status: 400, success: false, message: `User was not found`, error: error };
+    }
+  }
+
+  async deleteUser(userToDelete) {
+    try {
+      const user = await User.findById(userToDelete._id);
+      await User.deleteOne(user);
+      return { status: 200, success: true, message: `${user.username} was deleted` };
+    } catch (error) {
+      return { status: 400, success: false, message: `User was not found`, error: error };
+    }
   }
 }
 
