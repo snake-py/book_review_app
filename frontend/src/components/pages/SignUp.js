@@ -1,11 +1,53 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class SignUp extends Component {
-    render() {
-        return (
-            <div>
-                SignUp
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      email: '',
+      password: '',
+    };
+  }
+  onChangeUsername = (e) => {
+    this.setState({ username: e.target.value });
+  };
+  onChangeEmail = (e) => {
+    this.setState({ email: e.target.value });
+  };
+  onChangePassword = (e) => {
+    this.setState({ password: e.target.value });
+  };
+  render() {
+    return (
+      <div className="row mt-5">
+        <div className="col-6 mx-auto">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">Sign In</h5>
+              <form>
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input id="username" className="form-control" type="string" value={this.state.username} onChange={this.onChangeUsername} />
+                </div>
+                <div class="form-group">
+                  <label for="email">E-Mail</label>
+                  <input id="email" className="form-control" type="email" value={this.state.email} onChange={this.onChangeEmail} />
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input id="password" className="form-control" type="password" value={this.state.password} onChange={this.onChangePassword} />
+                </div>
+                <small className="form-text">
+                  Already Sign Up? Go to <Link to="signin">Log In</Link>.
+                </small>
+                <button className="btn btn-primary mt-5">Sign Up</button>
+              </form>
             </div>
-        )
-    }
+          </div>
+        </div>
+      </div>
+    );
+  }
 }

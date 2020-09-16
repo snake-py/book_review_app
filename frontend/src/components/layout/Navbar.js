@@ -6,9 +6,10 @@ export default class Navbar extends Component {
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand" href="#">
+          <Link className="navbar-brand" to="/">
             Book Review
-          </a>
+          </Link>
+
           <button
             className="navbar-toggler"
             type="button"
