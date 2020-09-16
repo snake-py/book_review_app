@@ -1,7 +1,7 @@
 const { registerInputValidation, userExistCheck, loginInputValidation, findUser, issueToken } = require('../helpers/UserControllerHelper');
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 // Write controller
 class UserController {

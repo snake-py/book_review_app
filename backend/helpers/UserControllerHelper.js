@@ -59,7 +59,7 @@ const userExistCheck = async (username, email) => {
 const issueToken = async (user, userToLogin) => {
   const validPass = await bcrypt.compare(userToLogin.password, user.password);
   if (!validPass) return { success: false, message: 'Invalid Password' };
-  
+
   const token = await jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
   return { success: true, token: token };
 };
