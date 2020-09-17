@@ -7,7 +7,7 @@ const reviewSchema = new Schema(
         rating: {type: Number, required, min: 1, max: 10},
         text: {type: String, text: true},
         user_id: {type: Schema.Types.ObjectId, ref: 'User'},
-        //book_id: {type: Schema.Types.ObjectId, ref: 'Book'},
+        book_id: {type: Schema.Types.ObjectId, ref: 'Book'},
 
     }, { timestamps: true });
 

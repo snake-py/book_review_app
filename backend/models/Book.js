@@ -7,7 +7,7 @@ const bookSchema = new Schema(
         title: {type: String},
         author: {type: String},
         thumbnail: {type: String},
-        heart_sum: {type: Number, default: 0},
+        like_sum: {type: Number, default: 0},
         click_counter: {type: Number, default: 0},
         average_rating: {type: Number, max: 10, min: 1, default: 1},
     },
