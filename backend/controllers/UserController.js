@@ -61,5 +61,5 @@ class UserController {
   }
 }
 
-const examples = new UserController();
-module.exports = examples;
+const userController = new UserController();
+module.exports = userController;
