@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const router = require('./routes/UserAPI');
+const user_router = require('./routes/UserAPI');
+const book_router = require('./routes/BookAPI');
 
 require('dotenv').config();
 
@@ -13,7 +14,8 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, () =>
   console.log('DB Connection is established');
 });
 
-server.use('/', router);
+server.use('/', user_router);
+server.use('/', book_router);
 
 server.listen(port, () => {
   console.log(`Server is running on port:  ${port}`);
