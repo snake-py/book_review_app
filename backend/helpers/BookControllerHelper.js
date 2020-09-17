@@ -2,7 +2,7 @@ const Book = require('../models/Book');
 
 const decrementLikeSum = async (id) => {
     const query = { "_id": id };
-    const decrement = { "$inc": { "heart_sum": -1}};
+    const decrement = { "$inc": { "like_sum": -1}};
     //const options = { "upsert": false };
     try{
         await Book.updateOne(query, decrement);
@@ -14,7 +14,7 @@ const decrementLikeSum = async (id) => {
 
 const incrementLikeSum = async (id) => {
     const query = { "_id": id };
-    const increment = { "$inc": { "heart_sum": 1}};
+    const increment = { "$inc": { "like_sum": 1}};
     //const options = { "upsert": false };
     try{
         await Book.updateOne(query, increment);
