@@ -6,17 +6,17 @@ router.post('/user/register', async (req, res) => {
   const mutedData = await register(req.body);
   res.send(mutedData);
 });
-router.post('/user/login', async (req, res) => {
+router.post('/login', async (req, res) => {
   const mutedData = await login(req.body);
   res.send(mutedData);
 });
 
-router.post('/user/ban', async (req, res) => {
+router.post('/ban', async (req, res) => {
   const mutedData = await changeBanStatus(req.body);
   res.status(mutedData.status).send(mutedData.message);
 });
 
-router.delete('/user', async (req, res) => {
+router.delete('/', async (req, res) => {
   const mutedData = await deleteUser(req.body);
   res.status(mutedData.status).send(mutedData.message);
 });
