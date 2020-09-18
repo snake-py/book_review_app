@@ -6,6 +6,7 @@ import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import auth from './auth'
+import './css/app.css'
 // import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(

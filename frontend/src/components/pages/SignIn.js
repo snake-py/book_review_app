@@ -19,25 +19,27 @@ export default class SignIn extends Component {
 
   render() {
     return (
-      <div className="row mt-5">
-        <div className="col-6 mx-auto">
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Sign In</h5>
-              <form>
-                <div class="form-group">
-                  <label for="identifier">Username or E-Mail</label>
-                  <input id="identifier" className="form-control" type="string" value={this.state.identifier} onChange={this.onChangeIdentifier} />
-                </div>
-                <div class="form-group">
-                  <label for="password">Password</label>
-                  <input id="password" className="form-control" type="password" value={this.state.password} onChange={this.onChangePassword} />
-                </div>
-                <small className="form-text">
-                  Not <Link to="signup">Signed Up</Link> yet?
-                </small>
-                <button className="btn btn-primary mt-5">Sign In</button>
-              </form>
+      <div className="container">
+        <div className="row mt-5">
+          <div className="col-6 mx-auto">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Sign In</h5>
+                <form>
+                  <div class="form-group">
+                    <label for="identifier">Username or E-Mail</label>
+                    <input id="identifier" className="form-control" type="string" value={this.state.identifier} onChange={this.onChangeIdentifier} />
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" className="form-control" type="password" value={this.state.password} onChange={this.onChangePassword} />
+                  </div>
+                  <small className="form-text">
+                    Not <Link to="signup">Signed Up</Link> yet?
+                  </small>
+                  <button className="btn btn-primary mt-5">Sign In</button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
