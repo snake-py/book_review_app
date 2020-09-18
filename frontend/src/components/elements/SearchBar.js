@@ -1,6 +1,25 @@
 import React, { Component } from 'react';
 
 export default class SearchBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      phrase: '',
+    };
+  }
+
+  onChangeSearch = (e) => {
+    this.setState({ phrase: e.target.value });
+  };
+  onKeyPressSearch = (e) => {
+    if (e.key === 'Enter') {
+      console.log('enter');
+      window.location.replace(`${process.env.REACT_APP_BASE_URL}/book/search/${e.target.value}`);
+    }
+  };
+  onClickSearch = (e) => {
+    window.location.replace(`${process.env.REACT_APP_BASE_URL}/book/search/${e.target.value}`);
+  };
   render() {
     return (
       <React.Fragment>
@@ -9,10 +28,12 @@ export default class SearchBar extends Component {
             <h1>Look for a book</h1>
             <div className="form-row ">
               <div className="form-group col-9">
-                <input className="form-control" type="text" placeholder="ISBN, Title, Phrase" />
+                <input value={this.state.phrase} onKeyPress={this.onKeyPressSearch} onChange={this.onChangeSearch} className="form-control" type="text" placeholder="ISBN, Title, Phrase" />
               </div>
               <div className="form-group col-3">
-                <button className="btn btn-primary btn-block">Search</button>
+                <button onClick={this.onClickSearch} className="btn btn-primary btn-block">
+                  Search
+                </button>
               </div>
             </div>
           </div>
@@ -31,6 +52,6 @@ const divStyle = {
 };
 
 const cardAddStyle = {
-    padding: "0 2vw",
-    backgroundColor: "rgba(255,255,255,0.6)"
-}
+  padding: '0 2vw',
+  backgroundColor: 'rgba(255,255,255,0.6)',
+};

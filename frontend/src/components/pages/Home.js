@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SearchBar from '../elements/SearchBar';
-import currentMonth from '../../date'
-import Results from '../elements/Results'
+import currentMonth from '../../helper/date'
+import Results from '../elements/ResultsList'
 
 export default class Home extends Component {
   render() {

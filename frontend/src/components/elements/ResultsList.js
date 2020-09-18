@@ -5,6 +5,12 @@ export default class Results extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      books: [],
+    };
+  }
+
+  componentDidMount = () => {
+    this.setState({
       books: [
         {
           isbn: '564-135468464',
@@ -31,8 +37,15 @@ export default class Results extends Component {
           thumbnail: 'https://picsum.photos/200/300?random=4',
         },
       ],
-    };
-  }
+    });
+  };
+
+  componentWillUnmount = () => {
+    this.setState({
+      books: [],
+    });
+  };
+
   render() {
     return this.state.books.map((book) => <BookCard key={book.isbn} book={book} />);
   }
