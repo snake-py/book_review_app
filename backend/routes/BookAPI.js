@@ -17,8 +17,6 @@ router.post('/like', async(req, res) => {
     res.status(mutedData.status).send(mutedData.msg);
 });
 
-
-//TO BE CHECKED
 //user gets all liked books
 router.get('/liked', async (req, res) => {
     const mutedData = await getLikedBooks(req.body);

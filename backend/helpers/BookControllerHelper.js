@@ -36,6 +36,8 @@ const incrementClick = async (isbn) => {
     }
 };
 
+
+
 module.exports.decrementLikeSum = decrementLikeSum;
 module.exports.incrementLikeSum = incrementLikeSum;
 module.exports.incrementClick = incrementClick;
