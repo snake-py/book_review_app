@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Review = require('../models/Review');
 const Book = require('../models/Book');
-const {reviewValidation, updateAvgRatingAdd, updateAvgRatingDelete} = require('../helpers/ReviewControllerHelper');
+const {reviewValidation, updateAvgRatingAdd, updateAvgRatingDelete, upDateAvgRatingUpdate} = require('../helpers/ReviewControllerHelper');
 
 class ReviewController{
     async addReview(inputReview){
@@ -33,9 +33,9 @@ class ReviewController{
         }
         //add the review
         try{
+            const result = await updateAvgRatingAdd(bookId, rating);
             const newReview =new Review({title: reviewTitle, rating: rating, text:text, user_id: userId, book_id: bookId});
             newReview.save();
-            const result = await updateAvgRatingAdd(bookId, rating);
             if(result.success){
                 return {status: 200, success: true, msg: `The book with isbn ${isbn} is now reviewed by this user ${userId}. ${result.msg}`};
             }else{
@@ -70,6 +70,32 @@ class ReviewController{
         }catch (error) {
             return { status: 400, success: false, msg: `Review was not found. ${error}`};
         }
+    }
+
+    async updateReview(reviewToUpdate){
+            const reviewFound = await Review.findById(reviewToUpdate._id);
+            if(!reviewFound) return {status:400, success: false, msg: "Review was not found"};
+            const {_id, title,rating,text,user_id,book_id} = reviewToUpdate;
+            //validate the updated review
+            const { error } = reviewValidation({title: title, rating: rating, textt:text, user_id: user_id, book_id: book_id});
+            if (error) return {status:400, success: false, msg: `ERROR: ${error.details[0].message}` };
+            const query = { "_id": _id };
+            const updateRating = 
+            { "$set": 
+                    {"title": title,
+                    "rating": rating ,
+                    "text": text,
+                    "user_id": user_id,
+                    "book_id": book_id}};
+            //const options = { "upsert": false };
+            try{
+                //update the rating of the book
+                await upDateAvgRatingUpdate(reviewToUpdate.book_id,reviewFound.rating, rating);
+                await Review.updateOne(query, updateRating);
+                return {status: 200, success: true, msg: `The review with id ${_id} is updated`};
+            }catch(error){
+                return {status: 400, success: false, msg: `msg: ${error}`};
+            }
     }
 }
 

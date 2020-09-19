@@ -13,19 +13,20 @@ const reviewValidation = (review) => {
     return schema.validate(review);
   };
   
-const updateAvgRatingAdd = async (bookId, ratingByUser)=>{
+const updateAvgRatingAdd = async (bookId, ratingByUser, update)=>{
     const bookFound = await Book.findById(bookId);
     const oldAverageRating = bookFound.average_rating;
     const allReviews = await Review.find({book_id: bookId});
     const nrOfReviews = allReviews.length;
     const totalRating = nrOfReviews * oldAverageRating;
     const newAverageReview = Math.floor((totalRating + ratingByUser)/(nrOfReviews+1));
+    if(newAverageReview===0) newAverageReview=1;
     const query = { "_id": bookId };
     const updateRating = { "$set": { "average_rating": newAverageReview}};
     //const options = { "upsert": false };
     try{
         await Book.updateOne(query, updateRating);
-        return {success: true, msg: `Updated the average rating ${newAverageReview}`};
+        return {success: true, msg: `Updated the average rating ${newAverageReview}. Nr of Reviews. ${nrOfReviews+1}`};
     }catch(error){
         return {success: false, msg: `msg: ${error}`};
     }
@@ -33,7 +34,7 @@ const updateAvgRatingAdd = async (bookId, ratingByUser)=>{
 
 const updateAvgRatingDelete = async (bookId,ratingByUser)=>{
     const bookFound = await Book.findById(bookId);
-    const avgRatingOld = (await bookFound).average_rating;
+    const avgRatingOld = bookFound.average_rating;
     const allReviews = await Review.find({book_id: bookId});
     const nrOfReviews = allReviews.length;
     const totalRating = nrOfReviews * avgRatingOld;
@@ -43,6 +44,7 @@ const updateAvgRatingDelete = async (bookId,ratingByUser)=>{
     }else{
         newAverageReview=1;
     }
+    if(newAverageReview===0) newAverageReview=1;
     const query = { "_id": bookId };
     const updateRating = { "$set": { "average_rating": newAverageReview}};
     //const options = { "upsert": false };
@@ -54,6 +56,32 @@ const updateAvgRatingDelete = async (bookId,ratingByUser)=>{
     }
 }
 
+const upDateAvgRatingUpdate = async(bookId, oldRatingByUser,newRatingByUser)=>{
+    const bookFound = await Book.findById(bookId);
+    const avgRatingOld = bookFound.average_rating;
+    const allReviews = await Review.find({book_id: bookId});
+    const nrOfReviews = allReviews.length;
+    const totalRating = nrOfReviews * avgRatingOld;
+    let newAverageReview;
+    if(nrOfReviews >1){ 
+        newAverageReview = Math.floor((totalRating - oldRatingByUser+newRatingByUser)/nrOfReviews);
+    }else{
+        newAverageReview=1;
+    }
+    if(newAverageReview===0) newAverageReview=1;
+    const query = { "_id": bookId };
+    const updateRating = { "$set": { "average_rating": newAverageReview}};
+    //const options = { "upsert": false };
+    try{
+        await Book.updateOne(query, updateRating);
+        return {success: true, msg: `Updated the average rating: ${newAverageReview}`};
+    }catch(error){
+        return {success: false, msg: `msg: ${error}, ${newAverageReview}`};
+    }
+}
+
 module.exports.reviewValidation = reviewValidation;
 module.exports.updateAvgRatingAdd = updateAvgRatingAdd;
 module.exports.updateAvgRatingDelete = updateAvgRatingDelete;
+module.exports.upDateAvgRatingUpdate = upDateAvgRatingUpdate;
+

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { addReview, getReviews, deleteReview} = require('../controllers/ReviewController');
+const { addReview, getReviews, deleteReview, updateReview} = require('../controllers/ReviewController');
 
 //write a book review
 router.post('/add', async(req, res)=>{
@@ -15,6 +15,11 @@ router.get('/get', async(req, res)=>{
 //delete a review
 router.delete('/', async(req, res)=>{
     const mutedData = await deleteReview(req.body);
+    res.status(mutedData.status).send(mutedData.msg);
+});
+//update a review
+router.post('/update', async(req, res)=>{
+    const mutedData= await updateReview(req.body);
     res.status(mutedData.status).send(mutedData.msg);
 });
 
