@@ -5,11 +5,11 @@ const { register, login, changeBanStatus, deleteUser } = require('../controllers
 
 router.post('/register', async (req, res) => {
   const mutedData = await register(req.body);
-  res.send(mutedData);
+  res.status(mutedData.status).send(mutedData.message);
 });
 router.post('/login', async (req, res) => {
   const mutedData = await login(req.body);
-  res.send(mutedData);
+  res.status(mutedData.status).send(mutedData.message);
 });
 
 router.post('/ban', async (req, res) => {

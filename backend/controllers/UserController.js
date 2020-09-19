@@ -9,10 +9,10 @@ class UserController {
     const { username, email, password } = userToRegister;
 
     const { error } = registerInputValidation(userToRegister);
-    if (error) return { success: false, msg: `ERROR: ${error.details[0].message}` };
+    if (error) return { status: 406, success: false, msg: `ERROR: ${error.details[0].message}` };
 
     const userExist = await userExistCheck(username, email);
-    if (userExist.sucsess) return { success: false, msg: `ERROR: ${userExist.msg}` };
+    if (userExist.sucsess) return { status: 406, success: false, msg: `ERROR: ${userExist.msg}` };
 
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(password, salt);
@@ -20,9 +20,9 @@ class UserController {
     const newUser = new User({ username: username, email: email, password: hashPassword });
     try {
       await newUser.save();
-      return { success: true, msg: `${newUser.username} was registered.` };
+      return { status: 200, success: true, msg: `${newUser.username} was registered.` };
     } catch (error) {
-      return { success: false, msg: `ERROR: ${error}` };
+      return { status: 400, success: false, msg: `ERROR: ${error}` };
     }
   }
 
@@ -33,7 +33,7 @@ class UserController {
     if (error) return error.details[0].message;
 
     const user = await findUser(userToLogin);
-    if (!user) return { success: false, message: 'We dont know this user! Do you want to register?' };
+    if (!user) return {status: 401, success: false, message: 'We dont know this user! Do you want to register?' };
 
     const token = await issueToken(user, userToLogin);
     return token;
