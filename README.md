@@ -26,10 +26,10 @@ User, Book, Favorites, Liked, Review, query_data, book_data, excel
 
 ### BookController
 
-| Route | JSON Data the Controller Requires | Response JSON Data |
-| ------------ | ------------- | ------------- |
-| /api/book/whatever | list data  | list data  |
-| Content Cell | Content Cell  |
+| Route | JSON Data the Controller Requires | Response JSON Data | Comment | Protected |
+| ------------ | ------------- | ------------- |------------- |
+| /api/book/whatever | list data  | list data  | What will it do? | Admin/User/Guest? |
+
 
 ## License
 
