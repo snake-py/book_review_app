@@ -23,6 +23,13 @@ npm start
 User, Book, Favorites, Liked, Review, query_data, book_data, excel
 
 ## API
+In this section the Controllers and their functionality will be described.
+
+### UserController
+| Route | JSON Data the Controller Requires | Response JSON Data | Protected | request Type | Comment |
+| ----- | --------------------------------- | ------------------ |---------- |------------- | ------- |
+| /api/user/register |  username, email, password | status, message |  guest  | post | It only registers the user - I want to implement email verification and let the user only log in if the user is verfied. |
+
 
 ### BookController
 
