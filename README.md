@@ -28,7 +28,7 @@ In this section the Controllers and their functionality will be described.
 ### UserController
 All requests send back a message and status.
 
-| Route | Required data | Response data | Protected | request type | Comment |
+| Route | Required data | Response data | Protected | Request type | Comment |
 | ----- | ------------- | ------------- |---------- |------------- | ------- |
 | /api/user/register |  username, email, password | status, message |  guest  | post | It only registers the user - I want to implement email verification and let the user only log in if the user is verfied. |
 | /api/user/login | username, pw or email, pw | status, message, token | guest | post | the token must be saved in the FE as auth.token in the session or cookie |
@@ -38,7 +38,7 @@ All requests send back a message and status.
 
 ### BookController
 
-| Route | Required data | Response data | Protected | request type | Comment |
+| Route | Required data | Response data | Protected | Request type | Comment |
 | ----- | ------------- | ------------- |---------- |------------- | ------- |
 | /api/book/whatever | list data  | list data  | What will it do? | Admin/User/Guest? |
 
