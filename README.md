@@ -33,8 +33,8 @@ In this section the Controllers and their functionality will be described.
 
 ### BookController
 
-| Route | JSON Data the Controller Requires | Response JSON Data | Comment | Protected |
-| ------------ | ------------- | ------------- |------------- |
+| Route | JSON Data the Controller Requires | Response JSON Data | Protected | request Type | Comment |
+| ----- | --------------------------------- | ------------------ |---------- |------------- | ------- |
 | /api/book/whatever | list data  | list data  | What will it do? | Admin/User/Guest? |
 
 
