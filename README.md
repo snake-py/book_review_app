@@ -40,7 +40,9 @@ All requests send back a message and status.
 
 | Route | Required data | Response data | Protected | Request type | Comment |
 | ----- | ------------- | ------------- |---------- |------------- | ------- |
-| /api/book/whatever | list data  | list data  | What will it do? | Admin/User/Guest? |
+| /api/books/click | isbn, title, author, thumbnail | status, success, message  | guest | post | By clicking the book in the search page, the book get added to the database. |
+| /api/books/like | user_id, book_id | status, liked, message |member | post | A member likes or unlikes a book (if previously liked) |
+| /api/books/liked | user_id |status, likedBooks, message | memeber | get | The member can see all his liked books |  
 
 
 ## License
