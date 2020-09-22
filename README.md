@@ -42,8 +42,16 @@ All requests send back a message and status.
 | ----- | ------------- | ------------- |---------- |------------- | ------- |
 | /api/books/click | isbn, title, author, thumbnail | status, success, message  | guest | post | By clicking the book in the search page, the book get added to the database. |
 | /api/books/like | user_id, book_id | status, liked, message |member | post | A member likes or unlikes a book (if previously liked) |
-| /api/books/liked | user_id |status, likedBooks, message | memeber | get | The member can see all his liked books |  
+| /api/books/liked | user_id |status, likedBooks, message | member | get | The member can see all his liked books |  
 
+### ReviewController
+
+| Route | Required data | Response data | Protected | Request type | Comment |
+| ----- | ------------- | ------------- |---------- |------------- | ------- |
+| /api/book/review/add | reviewTitle, rating, text, userId, bookId, isbn, bookTitle, author, thumbnail, bookLikeSum, bookClickCounter, bookAverageRating, | status, success, message  | member | post | The member can add a review to a book |
+| /api/book/review/get | user_id | status, reviewedBooks, message |member | get | A member gets all the books he has reviewed. |
+| /api/book/review/  | title, rating, text, user_id, book_id |status, success , message | member | delete | The member can delete a review |  
+| /api/book/review/update  | _id (of the review) ,title, rating, text, user_id, book_id |status, success, message | memeber | post | The member can update a review |  
 
 ## License
 
