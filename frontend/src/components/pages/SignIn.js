@@ -26,12 +26,12 @@ export default class SignIn extends Component {
               <div className="card-body">
                 <h5 className="card-title">Sign In</h5>
                 <form>
-                  <div class="form-group">
-                    <label for="identifier">Username or E-Mail</label>
+                  <div className="form-group">
+                    <label>Username or E-Mail</label>
                     <input id="identifier" className="form-control" type="string" value={this.state.identifier} onChange={this.onChangeIdentifier} />
                   </div>
-                  <div class="form-group">
-                    <label for="password">Password</label>
+                  <div className="form-group">
+                    <label>Password</label>
                     <input id="password" className="form-control" type="password" value={this.state.password} onChange={this.onChangePassword} />
                   </div>
                   <small className="form-text">

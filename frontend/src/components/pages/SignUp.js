@@ -28,16 +28,16 @@ export default class SignUp extends Component {
               <div className="card-body">
                 <h5 className="card-title">Sign In</h5>
                 <form>
-                  <div class="form-group">
-                    <label for="username">Username</label>
+                  <div className="form-group">
+                    <label>Username</label>
                     <input id="username" className="form-control" type="string" value={this.state.username} onChange={this.onChangeUsername} />
                   </div>
-                  <div class="form-group">
-                    <label for="email">E-Mail</label>
+                  <div className="form-group">
+                    <label>E-Mail</label>
                     <input id="email" className="form-control" type="email" value={this.state.email} onChange={this.onChangeEmail} />
                   </div>
-                  <div class="form-group">
-                    <label for="password">Password</label>
+                  <div className="form-group">
+                    <label>Password</label>
                     <input id="password" className="form-control" type="password" value={this.state.password} onChange={this.onChangePassword} />
                   </div>
                   <small className="form-text">
