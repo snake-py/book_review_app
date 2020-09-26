@@ -15,7 +15,7 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, () =>
   console.log('DB Connection is established');
 });
 
-server.use('/user', user_router);
+server.use('/api/user', user_router);
 server.use('/books', book_router);
 server.use('/book/review', review_router);
 

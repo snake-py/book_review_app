@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { useParams } from 'react-router-dom';
 import ResultsList from '../elements/ResultsList';
 
 export default class Results extends Component {

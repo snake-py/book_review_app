@@ -29,4 +29,7 @@ router.post('/example', auth, async (req, res) => {
   res.send(req.user);
 });
 
+router.get('/hello', async (req, res) => {
+  res.send('here is your backend');
+});
 module.exports = router;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 export default class SignUp extends Component {
   constructor(props) {
@@ -19,6 +20,19 @@ export default class SignUp extends Component {
   onChangePassword = (e) => {
     this.setState({ password: e.target.value });
   };
+
+  sendForm = (e) => {
+    e.preventDefault();
+    // console.log(process.env.REACT_APP_SERVER_URL);
+    axios
+      .post('/api/user/register', {
+        username: this.state.username,
+        email: this.state.email,
+        password: this.state.password,
+      })
+      .then((res) => console.log(res)).catch(err => console.log(err))
+  };
+
   render() {
     return (
       <div className="container">
@@ -43,7 +57,9 @@ export default class SignUp extends Component {
                   <small className="form-text">
                     Already Sign Up? Go to <Link to="signin">Log In</Link>.
                   </small>
-                  <button className="btn btn-primary mt-5">Sign Up</button>
+                  <button onClick={this.sendForm} className="btn btn-primary mt-5">
+                    Sign Up
+                  </button>
                 </form>
               </div>
             </div>
