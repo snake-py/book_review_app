@@ -19,6 +19,7 @@ export default class BookCard extends Component {
                 <p className="card-text">
                   <small className="text-muted">ISBN: {this.props.book.isbn}</small>
                 </p>
+                <i class="fas fa-heart"></i>
               </div>
             </div>
           </div>
