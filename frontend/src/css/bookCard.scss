@@ -1,0 +1,17 @@
+// Cook card scss
+.card {
+  .rating-box {
+    float: right;
+    .heart {
+      color: transparent;
+      -webkit-text-stroke-width: 3px;
+      -webkit-text-stroke-color: black;
+      font-size: 30px;
+      cursor: pointer;
+    }
+    .rating {
+      font-size: 32px;
+      padding-left: 30px;
+    }
+  }
+}

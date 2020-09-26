@@ -1,19 +1,24 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Home from './components/pages/Home';
 import SignIn from './components/pages/SignIn';
 import SignUp from './components/pages/SignUp';
-import Results from './components/pages/Results'
+import Results from './components/pages/Results';
+import history from './components/utilities/History';
+import NotFound from './components/utilities/NotFound';
 
 function App() {
   return (
-    <Router>
+    <Router history={history}>
       <Navbar />
-      <Route path="/" exact component={Home} />
-      <Route path="/signin" exact component={SignIn} />
-      <Route path="/signup" exact component={SignUp} />
-      <Route path="/book/search" component={Results} />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/signin" component={SignIn} />
+        <Route exact path="/signup" component={SignUp} />
+        <Route path="/book/search" component={Results} />
+        <Route component={NotFound} />
+      </Switch>
     </Router>
   );
 }

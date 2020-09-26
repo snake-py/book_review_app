@@ -9,6 +9,7 @@
     "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
     "dotenv": "^8.2.0",
+    "history": "^4.10.1",
     "jquery": "^3.5.1",
     "node-sass": "^4.14.1",
     "popper.js": "^1.16.1",
