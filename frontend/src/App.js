@@ -16,8 +16,8 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/signin" component={SignIn} />
         <Route exact path="/signup" component={SignUp} />
-        <Route path="/book/search" component={Results} />
-        <Route component={NotFound} />
+        <Route path="/book/search/:phrase" component={Results} />
+        <Route path="*" component={NotFound} />
       </Switch>
     </Router>
   );

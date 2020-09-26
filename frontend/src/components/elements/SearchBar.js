@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 
-export default class SearchBar extends Component {
+class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,12 +14,13 @@ export default class SearchBar extends Component {
   };
   onKeyPressSearch = (e) => {
     if (e.key === 'Enter') {
-      console.log('enter');
-      window.location.replace(`${process.env.REACT_APP_BASE_URL}/book/search/${e.target.value}`);
+      console.log(e.target.value);
+      this.props.history.push(`/book/search/${this.state.phrase}`);
     }
   };
   onClickSearch = (e) => {
-    window.location.replace(`${process.env.REACT_APP_BASE_URL}/book/search/${e.target.value}`);
+    console.log(e.target.value);
+    this.props.history.push(`/book/search/${this.state.phrase}`);
   };
   render() {
     return (
@@ -42,6 +44,8 @@ export default class SearchBar extends Component {
     );
   }
 }
+
+export default withRouter(SearchBar);
 
 const divStyle = {
   position: 'absolute',
