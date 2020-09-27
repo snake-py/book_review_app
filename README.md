@@ -19,7 +19,7 @@ First cd into the backend folder and then run:
 ```bash
 npm start
 ```
-### Start the backend
+### Start the frontend
 
 In a second terminal cd into the frontend folder and run:
 
