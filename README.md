@@ -10,12 +10,30 @@ After you download the reposetory, you have to cd into the backend and the front
 npm install
 ```
 
-## Start Express
+## Start the app
 
-To start express run within the backend folder:
+### Start the backend
+
+First cd into the backend folder and then run:
 
 ```bash
 npm start
+```
+### Start the backend
+
+In a second terminal cd into the frontend folder and run:
+
+```bash
+npm start
+```
+
+### Proxy
+
+You must make sure that the proxy for react is set correctly so that the backend and the frontend can communicated. 
+
+For instance when express is running on port 5000 and react is running on port 3000 then you need to add into react's package.json file:
+ ```bash
+ "proxy": "http://localhost:5000/"
 ```
 
 ## Data Models
