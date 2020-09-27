@@ -28,16 +28,16 @@ class UserController {
 
   async login(userToLogin) {
     // identifier can be username or email
-
+    
     const validatedInput = loginInputValidation(userToLogin);
     const { error } = validatedInput.validatedInput;
-    if (error) return error.details[0].message;
+    if (error) return {status: 401, success: false, msg: error.details[0].message};
 
     const user = await findUser(userToLogin);
-    if (!user) return { status: 401, success: false, message: 'We dont know this user! Do you want to register?' };
+    if (!user) return { status: 401, success: false, msg: 'We dont know this user! Do you want to register?' };
 
     const token = await issueToken(user, userToLogin);
-    return { token: token, status: 401, success: false, message: 'login' };
+    return { token: token, status: 200, success: true, msg: 'login' };
   }
 
   async changeBanStatus(userToBan) {
@@ -45,9 +45,9 @@ class UserController {
       const user = await User.findById(userToBan._id);
       user.isBanned = user.isBanned ? false : true;
       await user.save();
-      return { status: 200, success: true, message: `${user.username} banned status was changed to ${user.isBanned}` };
+      return { status: 200, success: true, msg: `${user.username} banned status was changed to ${user.isBanned}` };
     } catch (error) {
-      return { status: 400, success: false, message: `User was not found`, error: error };
+      return { status: 400, success: false, msg: `User was not found`, error: error };
     }
   }
 
@@ -55,9 +55,9 @@ class UserController {
     try {
       const user = await User.findById(userToDelete._id);
       await User.deleteOne(user);
-      return { status: 200, success: true, message: `${user.username} was deleted` };
+      return { status: 200, success: true, msg: `${user.username} was deleted` };
     } catch (error) {
-      return { status: 400, success: false, message: `User was not found`, error: error };
+      return { status: 400, success: false, msg: `User was not found`, error: error };
     }
   }
 }

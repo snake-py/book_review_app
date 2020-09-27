@@ -14,14 +14,13 @@ class App extends Component {
   componentDidMount() {
     axios.get('api/user/hello').then((res) => console.log(res));
   }
-
   render() {
     return (
       <Router history={history}>
         <Navbar />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/signin" component={SignIn} />
+          <Route exact path="/signin" component={() => <SignIn loadAuthApp={this.props.loadAuthApp} />} />
           <Route exact path="/signup" component={SignUp} />
           <Route path="/book/search/:phrase" component={Results} />
           <Route path="/message/:from" component={Message} />

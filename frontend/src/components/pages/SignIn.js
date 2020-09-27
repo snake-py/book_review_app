@@ -8,6 +8,7 @@ export default class SignIn extends Component {
     this.state = {
       identifier: '',
       password: '',
+      error: ''
     };
   }
 
@@ -19,7 +20,7 @@ export default class SignIn extends Component {
   };
 
   checkKey = (e) => {
-    if (e.target.value == 'Enter') {
+    if (e.target.value === 'Enter') {
       this.sendForm();
     }
   };
@@ -40,16 +41,32 @@ export default class SignIn extends Component {
           username: this.state.identifier,
           password: this.state.password,
         })
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
+        .then((res) => this.props.loadAuthApp(res))
+        .catch((err) => console.log(this.errorHandler(err.response.data, err)));
     }
   };
+
+  errorHandler = (error, full) => {
+    console.log(error);
+    this.setState({ error: error.msg });
+    setTimeout(() => {
+      this.setState({ error: '' });
+    }, 3000);
+  };
+
 
   render() {
     return (
       <div className="container">
         <div className="row mt-5">
           <div className="col-6 mx-auto">
+            {this.state.error ? (
+              <div className="error-alert alert alert-danger" role="alert">
+                {this.state.error}
+              </div>
+            ) : (
+              <></>
+            )}
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title">Sign In</h5>

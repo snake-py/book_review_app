@@ -45,7 +45,7 @@ class SignUp extends Component {
 
   errorHandler = (error, full) => {
     console.log(full);
-    this.setState({ error: error });
+    this.setState({ error: error.msg });
     setTimeout(() => {
       this.setState({ error: '' });
     }, 3000);
