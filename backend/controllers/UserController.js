@@ -28,15 +28,16 @@ class UserController {
 
   async login(userToLogin) {
     // identifier can be username or email
+
     const validatedInput = loginInputValidation(userToLogin);
     const { error } = validatedInput.validatedInput;
     if (error) return error.details[0].message;
 
     const user = await findUser(userToLogin);
-    if (!user) return {status: 401, success: false, message: 'We dont know this user! Do you want to register?' };
+    if (!user) return { status: 401, success: false, message: 'We dont know this user! Do you want to register?' };
 
     const token = await issueToken(user, userToLogin);
-    return token;
+    return { token: token, status: 401, success: false, message: 'login' };
   }
 
   async changeBanStatus(userToBan) {

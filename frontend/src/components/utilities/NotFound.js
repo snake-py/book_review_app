@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Message from './Message';
+import { withRouter } from 'react-router';
 
-export default class NotFound extends Component {
+
+class NotFound extends Component {
   componentDidMount() {
     this.props.history.push('/message/error', {
       heading: 'Error 404',
@@ -15,3 +16,4 @@ export default class NotFound extends Component {
     return <div></div>;
   }
 }
+export default withRouter(NotFound)

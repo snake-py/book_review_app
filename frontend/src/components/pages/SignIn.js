@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 export default class SignIn extends Component {
   constructor(props) {
@@ -17,6 +18,33 @@ export default class SignIn extends Component {
     this.setState({ password: e.target.value });
   };
 
+  checkKey = (e) => {
+    if (e.target.value == 'Enter') {
+      this.sendForm();
+    }
+  };
+
+  sendForm = (e) => {
+    e.preventDefault();
+    if (this.state.identifier.includes('@')) {
+      axios
+        .post('/api/user/login', {
+          email: this.state.identifier,
+          password: this.state.password,
+        })
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+    } else {
+      axios
+        .post('/api/user/login', {
+          username: this.state.identifier,
+          password: this.state.password,
+        })
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+    }
+  };
+
   render() {
     return (
       <div className="container">
@@ -32,12 +60,14 @@ export default class SignIn extends Component {
                   </div>
                   <div className="form-group">
                     <label>Password</label>
-                    <input id="password" className="form-control" type="password" value={this.state.password} onChange={this.onChangePassword} />
+                    <input onMouseDown={this.checkKey} id="password" className="form-control" type="password" value={this.state.password} onChange={this.onChangePassword} />
                   </div>
                   <small className="form-text">
                     Not <Link to="signup">Signed Up</Link> yet?
                   </small>
-                  <button className="btn btn-primary mt-5">Sign In</button>
+                  <button onClick={this.sendForm} className="btn btn-primary mt-5">
+                    Sign In
+                  </button>
                 </form>
               </div>
             </div>

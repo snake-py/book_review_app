@@ -8,8 +8,8 @@ router.post('/register', async (req, res) => {
   res.status(mutedData.status).send(mutedData.msg);
 });
 router.post('/login', async (req, res) => {
-  const mutedData = await login(req.body);
-  res.status(mutedData.status).send(mutedData.message);
+  const mutedData = await login(req.body)
+  res.status(mutedData.status).send(mutedData);
 });
 
 router.post('/ban', async (req, res) => {
