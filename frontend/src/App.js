@@ -7,12 +7,12 @@ import SignUp from './components/pages/SignUp';
 import Results from './components/pages/Results';
 import history from './components/utilities/History';
 import NotFound from './components/utilities/NotFound';
-import axios from 'axios'
-
+import Message from './components/utilities/Message';
+import axios from 'axios';
 
 class App extends Component {
   componentDidMount() {
-    axios.get('api/user/hello').then(res => console.log(res))
+    axios.get('api/user/hello').then((res) => console.log(res));
   }
 
   render() {
@@ -24,6 +24,7 @@ class App extends Component {
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signup" component={SignUp} />
           <Route path="/book/search/:phrase" component={Results} />
+          <Route path="/message/:from" component={Message} />
           <Route path="*" component={NotFound} />
         </Switch>
       </Router>

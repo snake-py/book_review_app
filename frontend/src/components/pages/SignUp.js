@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { withRouter } from 'react-router';
 
-export default class SignUp extends Component {
+class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
       email: '',
       password: '',
+      error: '',
     };
   }
   onChangeUsername = (e) => {
@@ -23,14 +25,30 @@ export default class SignUp extends Component {
 
   sendForm = (e) => {
     e.preventDefault();
-    // console.log(process.env.REACT_APP_SERVER_URL);
     axios
       .post('/api/user/register', {
         username: this.state.username,
         email: this.state.email,
         password: this.state.password,
       })
-      .then((res) => console.log(res)).catch(err => console.log(err))
+      .then((res) =>
+        this.props.history.push('/message/registration', {
+          heading: 'Registeration was succesfull',
+          title: 'Please verify your E-Mail and then log in',
+          message: 'Please check your spam!',
+          link: '/signin',
+          button: 'SignIn',
+        })
+      )
+      .catch((err) => this.errorHandler(err.response.data, err));
+  };
+
+  errorHandler = (error, full) => {
+    console.log(full);
+    this.setState({ error: error });
+    setTimeout(() => {
+      this.setState({ error: '' });
+    }, 3000);
   };
 
   render() {
@@ -38,9 +56,18 @@ export default class SignUp extends Component {
       <div className="container">
         <div className="row mt-5">
           <div className="col-6 mx-auto">
+            <div>
+              {this.state.error ? (
+                <div className="error-alert alert alert-danger" role="alert">
+                  {this.state.error}
+                </div>
+              ) : (
+                <></>
+              )}
+            </div>
             <div className="card">
               <div className="card-body">
-                <h5 className="card-title">Sign In</h5>
+                <h5 className="card-title">Sign Up</h5>
                 <form>
                   <div className="form-group">
                     <label>Username</label>
@@ -69,3 +96,5 @@ export default class SignUp extends Component {
     );
   }
 }
+
+export default withRouter(SignUp);
