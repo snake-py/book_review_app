@@ -19,6 +19,10 @@ export default class Detail extends Component{
                 <SearchBar/>
               </div>
             </header>
+            {/* layout start */}
+
+            
+            {/* layout end */}
             <BookDetail book={this.book}/>
           </React.Fragment>
         );
