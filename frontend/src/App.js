@@ -5,6 +5,7 @@ import Home from './components/pages/Home';
 import SignIn from './components/pages/SignIn';
 import SignUp from './components/pages/SignUp';
 import Results from './components/pages/Results';
+import Detail from './components/pages/Detail';
 import history from './components/utilities/History';
 import NotFound from './components/utilities/NotFound';
 import Message from './components/utilities/Message';
@@ -24,6 +25,7 @@ class App extends Component {
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signup" component={SignUp} />
           <Route path="/book/search/:phrase" component={Results} />
+          <Route exact path="/detail" component={Detail} />
           <Route path="/message/:from" component={Message} />
           <Route path="*" component={NotFound} />
         </Switch>

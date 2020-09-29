@@ -25,8 +25,8 @@ class SearchBar extends Component {
   render() {
     return (
       <React.Fragment>
-        <div style={divStyle}>
-          <div style={cardAddStyle} className="card">
+        <div className="search_bar_home search_bar_detail">
+          <div className="card">
             <h1>Look for a book</h1>
             <div className="form-row ">
               <div className="form-group col-9">
@@ -47,15 +47,3 @@ class SearchBar extends Component {
 
 export default withRouter(SearchBar);
 
-const divStyle = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%,-50%)',
-  width: '50vw',
-};
-
-const cardAddStyle = {
-  padding: '0 2vw',
-  backgroundColor: 'rgba(255,255,255,0.6)',
-};
