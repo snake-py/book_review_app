@@ -5,7 +5,7 @@ const { register, login, changeBanStatus, deleteUser } = require('../controllers
 
 router.post('/register', async (req, res) => {
   const mutedData = await register(req.body);
-  res.status(mutedData.status).send(mutedData.msg);
+  res.status(mutedData.status).send(mutedData);
 });
 router.post('/login', async (req, res) => {
   const mutedData = await login(req.body)
@@ -14,12 +14,12 @@ router.post('/login', async (req, res) => {
 
 router.post('/ban', async (req, res) => {
   const mutedData = await changeBanStatus(req.body);
-  res.status(mutedData.status).send(mutedData.message);
+  res.status(mutedData.status).send(mutedData);
 });
 
 router.delete('/', async (req, res) => {
   const mutedData = await deleteUser(req.body);
-  res.status(mutedData.status).send(mutedData.message);
+  res.status(mutedData.status).send(mutedData);
 });
 
 router.post('/exampleadmin', authAdmin, async (req, res) => {
