@@ -39,7 +39,7 @@ export default class Home extends Component {
     return (
       <React.Fragment>
         <header id="header">
-          <SearchBar className="search"/>
+          <SearchBar/>
         </header>
         <section>
           <div className="container mt-5">
