@@ -25,7 +25,7 @@ class SearchBar extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="search_bar_home search_bar_detail">
+        <div>
           <div className="card">
             <h1>Look for a book</h1>
             <div className="form-row ">

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import BookDetail from '../elements/BookDetail';
+import SearchBar from '../elements/SearchBar';
+
 
 export default class Detail extends Component{
     book = {
@@ -12,6 +14,11 @@ export default class Detail extends Component{
     render() {
         return (
           <React.Fragment>
+            <header>
+              <div className="search_bar_detail">
+                <SearchBar/>
+              </div>
+            </header>
             <BookDetail book={this.book}/>
           </React.Fragment>
         );
