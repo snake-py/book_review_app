@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import BookDetail from '../elements/BookDetail';
 import SearchBar from '../elements/SearchBar';
 import ReviewCard from '../elements/ReviewCard';
+import AddReview from '../elements/addReview';
 
 export default class Detail extends Component {
   book = {
@@ -35,6 +36,9 @@ export default class Detail extends Component {
         <section className="container mt-5">
           <BookDetail book={this.book} />
           <h5 className="review_section">Reviews</h5>
+          <div className = "addReview">
+              <AddReview />
+          </div>
           <div className="reviewCards">
             <ReviewCard review={this.review} />
           </div>
