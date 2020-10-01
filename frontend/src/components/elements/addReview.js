@@ -13,7 +13,7 @@ export default class addReview extends Component {
         <React.Fragment>
             <div className="form-row">
                 <div className="form-group col-md-10">
-                    <label for="inputAddress">ADD REVIEW</label>
+                    <label for="inputAddress">What do you think of this book?</label>
                     <input type="text" className="form-control" placeholder="Title" onSubmit="return false;" onChange="return false;"/>
                 </div>
                 <div className="form-group col-md-2">
